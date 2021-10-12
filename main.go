@@ -93,12 +93,14 @@ func Amsco(plaintext string, key int) string {
 	sort.Ints(keys)
 
 	ciphertext := ""
+	total_index := 0
 	for _, key := range keys {
-		for i, str := range valuemap[key] {
+		for _, str := range valuemap[key] {
 			ciphertext += str
-			if i%5 == 0 && i != 0 {
+			if (total_index+1)%5 == 0 && total_index != 0 {
 				ciphertext += " "
 			}
+			total_index++
 		}
 	}
 
