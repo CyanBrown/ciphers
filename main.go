@@ -3,7 +3,9 @@ package main
 import (
 	"fmt"
 	"math"
+	"os"
 	"sort"
+	"strconv"
 	"strings"
 )
 
@@ -139,5 +141,15 @@ func Ceasar(plaintext string, modulus int) string {
 }
 
 func main() {
-	fmt.Println(Amsco("Whoever has made a voyage up the Hudson must remember the Kaatskill mountains.", 35142))
+	args := os.Args[1:]
+	cipher := strings.ToLower(args[0])
+	extra, _ := strconv.Atoi(args[2])
+	var ciphertext string
+	if cipher == "amsco" {
+		ciphertext = Amsco(args[1], extra)
+	} else if cipher == "ceasar" {
+		ciphertext = Ceasar(args[1], extra)
+	}
+
+	fmt.Println(ciphertext)
 }
